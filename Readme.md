@@ -9,4 +9,4 @@ In this repository I will be implementing proofs of concept of different technol
 3. [Visual Studio Code](https://code.visualstudio.com/)
 4. [Docker](https://www.docker.com/)
 
-**Happy Coding** 
+**Happy Coding** :tada:
