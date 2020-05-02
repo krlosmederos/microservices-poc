@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{D82083D8-D08F-49BE-BC86-B91804849470}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoDataAccess", "MongoDataAccess", "{8860B1D7-A7A3-4418-96E8-A956CBBC618A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDataAccess.API", "Services\MongoDataAccess\MongoDataAccess.API\MongoDataAccess.API.csproj", "{96295D63-6D50-4996-9C80-F97499B0810C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96295D63-6D50-4996-9C80-F97499B0810C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96295D63-6D50-4996-9C80-F97499B0810C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96295D63-6D50-4996-9C80-F97499B0810C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{96295D63-6D50-4996-9C80-F97499B0810C}.Debug|x64.Build.0 = Debug|Any CPU
+		{96295D63-6D50-4996-9C80-F97499B0810C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{96295D63-6D50-4996-9C80-F97499B0810C}.Debug|x86.Build.0 = Debug|Any CPU
+		{96295D63-6D50-4996-9C80-F97499B0810C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96295D63-6D50-4996-9C80-F97499B0810C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96295D63-6D50-4996-9C80-F97499B0810C}.Release|x64.ActiveCfg = Release|Any CPU
+		{96295D63-6D50-4996-9C80-F97499B0810C}.Release|x64.Build.0 = Release|Any CPU
+		{96295D63-6D50-4996-9C80-F97499B0810C}.Release|x86.ActiveCfg = Release|Any CPU
+		{96295D63-6D50-4996-9C80-F97499B0810C}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8860B1D7-A7A3-4418-96E8-A956CBBC618A} = {D82083D8-D08F-49BE-BC86-B91804849470}
+		{96295D63-6D50-4996-9C80-F97499B0810C} = {8860B1D7-A7A3-4418-96E8-A956CBBC618A}
+	EndGlobalSection
+EndGlobal

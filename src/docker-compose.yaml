@@ -1,0 +1,22 @@
+version: '3.1'
+
+services: 
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: krlosmederos
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+    ports:
+      - 27019:27017
+
+  mongo-api:
+    restart: always
+    ports:
+      - 6000:80
+      - 6001:443
+    build: 
+      context: .
+      dockerfile: Services/MongoDataAccess/MongoDataAccess.API/Dockerfile
+    depends_on: 
+      - mongo
