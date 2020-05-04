@@ -10,6 +10,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using MongoDataAccess.API.Infrastructure.Repositories;
+using MongoDataAccess.API.Services;
+using MongoDataAccess.API.Settings;
 
 namespace MongoDataAccess.API
 {
@@ -25,6 +29,15 @@ namespace MongoDataAccess.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddOptions();
+            services.Configure<MongoDbSettings>(Configuration.GetSection(nameof(MongoDbSettings)));
+
+            services.AddSingleton<IMongoDbSettings>(sp => 
+                sp.GetRequiredService<IOptions<MongoDbSettings>>().Value);
+
+            services.AddScoped<IProductServices, ProductServices>();
+            services.AddScoped(typeof(IMongoDbRepository<>), typeof(MongoDbRepository<>));
+  
             services.AddControllers();
             services.AddHealthChecks();
         }
@@ -37,10 +50,9 @@ namespace MongoDataAccess.API
                 app.UseDeveloperExceptionPage();
             }
 
-            // app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
-
 
             app.UseEndpoints(endpoints =>
             {

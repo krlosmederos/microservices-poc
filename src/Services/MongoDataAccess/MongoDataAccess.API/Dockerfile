@@ -1,22 +1,22 @@
-# More info https://github.com/dotnet/dotnet-docker/tree/master/samples
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1
-ARG BUILD_CONFIGURATION=Debug
-ENV ASPNETCORE_ENVIRONMENT=Development
-ENV ASPNETCORE_URLS="https://*:443;http://*:80"
+#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-
-COPY ["Services/MongoDataAccess/MongoDataAccess.API/MongoDataAccess.API.csproj", "src/"]
-
-RUN dotnet restore src/MongoDataAccess.API.csproj
-
-COPY Services/MongoDataAccess/MongoDataAccess.API/ /src
-
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-RUN dotnet build --no-restore -c $BUILD_CONFIGURATION
+COPY ["Services/MongoDataAccess/MongoDataAccess.API/MongoDataAccess.API.csproj", "Services/MongoDataAccess/MongoDataAccess.API/"]
+RUN dotnet restore "Services/MongoDataAccess/MongoDataAccess.API/MongoDataAccess.API.csproj"
+COPY . .
+WORKDIR "/src/Services/MongoDataAccess/MongoDataAccess.API"
+RUN dotnet build "MongoDataAccess.API.csproj" -c Release -o /app/build
 
-RUN dotnet publish -c $BUILD_CONFIGURATION --output ../publish
+FROM build AS publish
+RUN dotnet publish "MongoDataAccess.API.csproj" -c Release -o /app/publish
 
-WORKDIR /publish
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "MongoDataAccess.API.dll"]
